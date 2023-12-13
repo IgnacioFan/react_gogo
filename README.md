@@ -15,3 +15,7 @@
   <p align="center">
   <img src="./.assets/hero-profile-page.png" width="80%"/>
   </p>
+
+## Devlopment Process
+1. create UIs for the hero card list
+2. create UIs for the hero's ability settings  

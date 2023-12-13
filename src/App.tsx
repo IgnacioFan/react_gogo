@@ -1,6 +1,8 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CardList from "./components/CardList";
+import AbilitySettings from "./components/AbilitySetting";
 import { ICard } from "./types/card";
+import { IAbility } from "./types/ability";
 import "./App.css";
 
 const theme = createTheme({
@@ -16,6 +18,7 @@ const theme = createTheme({
 });
 
 function App() {
+  let id = "1";
   let items: ICard[] = [
     {
       id: "1",
@@ -42,11 +45,13 @@ function App() {
       name: "Hulk",
     },
   ];
+  let abilities: IAbility = { str: 2, int: 7, agi: 9, luk: 7 };
   return (
     <>
       <ThemeProvider theme={theme}>
         <h1>Hero List</h1>
-        <CardList id="1" list={items} />
+        <CardList id={id} list={items} />
+        <AbilitySettings id={id} abilities={abilities}></AbilitySettings>
       </ThemeProvider>
     </>
   );
