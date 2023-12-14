@@ -46,12 +46,17 @@ function App() {
     },
   ];
   let abilities: IAbility = { str: 2, int: 7, agi: 9, luk: 7 };
+  let remain = 5;
   return (
     <>
       <ThemeProvider theme={theme}>
         <h1>Hero List</h1>
         <CardList id={id} list={items} />
-        <AbilitySettings id={id} abilities={abilities}></AbilitySettings>
+        <AbilitySettings
+          id={id}
+          abilities={abilities}
+          remain={remain}
+        ></AbilitySettings>
       </ThemeProvider>
     </>
   );
