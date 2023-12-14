@@ -22,6 +22,8 @@ const BasicCard: React.FC<CardProps> = ({ card, isSelected, onClick }) => {
     <Card
       sx={{
         margin: theme.spacing(1),
+        cursor: "pointer",
+        pointerEvents: isSelected ? "none" : "auto",
         border: "1px solid",
         borderColor: isSelected
           ? theme.palette.background.selected

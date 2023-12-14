@@ -1,19 +1,30 @@
+import { useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
 import Card from "./Card";
 import { ICard } from "../types/card";
 
 interface CardListProps {
-  id: string;
+  id?: string;
   list: ICard[];
 }
 
 const CardList: React.FC<CardListProps> = ({ id, list }) => {
+  const navigate = useNavigate();
   const handleClick = (id: string) => {
-    console.log(id);
+    navigate(`/heros/${id}`);
   };
 
   return (
-    <Grid container alignItems="center">
+    <Grid
+      container
+      sx={{
+        alignItems: "center",
+        padding: "10px",
+        marginBottom: "20px",
+        border: "1px solid",
+        borderColor: "#fff",
+      }}
+    >
       {list.map((item) => (
         <Card
           key={item.id}
