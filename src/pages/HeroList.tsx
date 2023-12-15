@@ -1,38 +1,29 @@
+import { useEffect, useState } from "react";
 import CardList from "../components/CardList";
+import { getHeroList } from "../services/hero";
 import { ICard } from "../types/card";
 
 const HeroList: React.FC = () => {
-  let heroCards: ICard[] = [
-    {
-      id: "1",
-      imageUrl:
-        "http://i.annihil.us/u/prod/marvel/i/mg/6/90/537ba6d49472b/standard_xlarge.jpg",
-      name: "Daredevil",
-    },
-    {
-      id: "2",
-      imageUrl:
-        "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/537bc7036ab02/standard_xlarge.jpg",
-      name: "Thor",
-    },
-    {
-      id: "3",
-      imageUrl:
-        "http://i.annihil.us/u/prod/marvel/i/mg/6/a0/55b6a25e654e6/standard_xlarge.jpg",
-      name: "Iron Man",
-    },
-    {
-      id: "4",
-      imageUrl:
-        "http://i.annihil.us/u/prod/marvel/i/mg/5/a0/538615ca33ab0/standard_xlarge.jpg",
-      name: "Hulk",
-    },
-  ];
+  const [herorList, setHeroList] = useState<ICard[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        getHeroList().then(({ data }) => {
+          setHeroList(data);
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
       <h1>Hero List</h1>
-      <CardList list={heroCards} />
+      <CardList list={herorList} />
     </>
   );
 };

@@ -3,12 +3,13 @@ import { Box } from "@mui/system";
 import styled from "@emotion/styled";
 import Button from "./Button";
 import { IAbility } from "../types/ability";
-import { useState } from "react";
 
 interface AbilitySettingsProps {
   id: string;
   abilities: IAbility;
   remain: number;
+  setAbilities: (value: React.SetStateAction<IAbility>) => void;
+  setRemain: (value: React.SetStateAction<number>) => void;
 }
 
 const Wrapper = styled(Box)(() => ({
@@ -50,12 +51,11 @@ const AbilitySettings: React.FC<AbilitySettingsProps> = ({
   id,
   abilities,
   remain,
+  setAbilities,
+  setRemain,
 }) => {
-  const [getRemain, setRemain] = useState<number>(remain);
-  const [getAbilities, setAbilities] = useState<IAbility>(abilities);
-
   const handleAdd = (key: string, val: number) => {
-    if (getRemain > 0) {
+    if (remain > 0) {
       setRemain((old) => (old -= 1));
       setAbilities((old) => ({
         ...old,
@@ -78,14 +78,14 @@ const AbilitySettings: React.FC<AbilitySettingsProps> = ({
   return (
     <Wrapper>
       <Box>
-        {Object.entries(getAbilities).map(([ability, val]) => (
+        {Object.entries(abilities).map(([ability, val]) => (
           <Box key={ability}>
             <Typography variant="h5" component="div">
               {ability.toUpperCase()}
             </Typography>
             <Button
               content="+"
-              isDisabled={getRemain == 0}
+              isDisabled={remain == 0}
               action={() => handleAdd(ability, val)}
             ></Button>
             <Typography variant="h5" component="div">
@@ -100,7 +100,7 @@ const AbilitySettings: React.FC<AbilitySettingsProps> = ({
         ))}
       </Box>
       <Box>
-        <Typography component="div">Remain Points: {getRemain}</Typography>
+        <Typography component="div">Remain Points: {remain}</Typography>
         <Button content="Save" action={() => handleSave()}></Button>
       </Box>
     </Wrapper>

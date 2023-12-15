@@ -21,3 +21,4 @@
 2. create UIs for the hero's ability settings  
 3. add state to hero's ability 
 4. set up routes and pages
+5. connect API endpoints to fetch data

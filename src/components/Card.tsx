@@ -33,7 +33,7 @@ const BasicCard: React.FC<CardProps> = ({ card, isSelected, onClick }) => {
     >
       <CardMedia
         component="img"
-        image={card.imageUrl}
+        image={card.image}
         title={card.name}
       ></CardMedia>
       <CardContent>
